@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h1::before{
+            content: "Hello ";
+            color: burlywood;
+            font-size: 12px;
+            background-color: blueviolet;
+        }
+        .special::after{
+            content: " Bye";
+            font-size: 15px;
+        }
+        body{
+            counter-reset: section;
+        }
+        p::before{
+            counter-increment: section;
+            content:"Crush ❤️" counter(section) ": ";
+        }        
+    </style>
+</head>
+<body>
+    <h1>Psudo Class</h1>
+    <h1 class="special">Normal Class</h1>
+    <h1 class="special">Video Class</h1>
+    <input name ="email" type="text">
+    <br>
+    <input name="password" type="text">
+    <br>
+    <a href="https://www.w3newspapers.com/bangladesh/">Papers</a>
+    <a href="https://www.24livenewspaper.com/bangla-newspaper">Papers Random</a>
+    <ul>
+        <p>Alia</p>
+        <p>Dalia</p>
+        <p>Malia</p>
+        <p>Salia</p>
+        <p>Jalia</p>
+        <p>Kalia</p>
+        <p>Falia</p>
+    </ul>
+</body>
+</html>
