@@ -1,0 +1,130 @@
+body{
+    font-family: 'Poppins', sans-serif;
+}
+h1{
+    font-size: 35px;
+}
+h2{
+    font-size: 30px;
+}
+p{
+    color: dimgray;
+}
+
+section{
+    height: 400px;
+    padding-bottom: 100px;
+}
+.half-width img{
+    width: 70%;
+}
+
+
+/* Head section style */
+#hello-text{
+    font-weight: bold;
+}
+.pink-heighight{
+    color: rgb(231, 93, 139);
+}
+.link-button{
+    text-decoration: none;
+    background-image: linear-gradient(palevioletred, rgb(231, 93, 139));
+    padding: 10px 20px;
+    border-radius: 10px;
+    color: white;
+}
+.half-width{
+    width: 40%;
+    float: left;
+    margin-left: 5%;
+    padding-left: 3%;
+}
+#topSpece{
+    margin-top: 100px;
+}
+
+.latest-work img{
+    width: 80%;
+}
+.latest-work{
+    width: 30%;
+    float: left;
+    margin-left: 3%;
+}
+.textCenter{
+    margin-top: 50px;
+    text-align: center;
+}
+.workSection{
+    margin-top: 100px;
+}
+
+.full-width{
+    width: 40%;
+    margin-left: 20%;
+    padding-left: 10%;
+}
+.identicalp{
+    text-align: center;
+    color: rgb(32, 31, 31);
+}
+
+.header{
+    background-image: url("images/header-bg.png");
+    background-repeat: no-repeat;
+    background-size: 90%;
+}
+.biography{
+    background-image: url("images/biography-bg.png");
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+.mywork{
+    background-image: url("images/latest-work-bg.png");
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+.footer{
+    background-image: url("images/footer-bg.png");
+    background-repeat: no-repeat;
+    background-size: 80%;
+}
+
+.leave-message{
+    width: 40%;
+    height: 150px;
+    margin-left: 25%;
+    padding-left: 10%;
+    background-image: linear-gradient(palevioletred, rgb(231, 93, 139));
+    border-radius: 10px;
+    margin-top: 50px;
+}
+.message{
+    width: 70%;
+    height: 50%;
+    margin-top: 0%;
+}
+#msg{
+    color: white;
+    padding-top: 10%;
+    text-align: center;
+    font-size: 15px;
+}
+.email{
+    width: 70%;
+    height: 50%;
+    margin-top: -4%;
+}
+#eml{
+    font-size: 20px;
+    color: white;
+    padding-bottom: 100%;
+    text-align: center;
+}
+footer p{
+    text-align: center;
+}
+
+
+
