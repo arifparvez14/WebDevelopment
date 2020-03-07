@@ -50,7 +50,7 @@ p{
 .price{
     text-align: center;
 }
-.card{
+.card, .subcat{
     border: none;
     border-radius: 10px;
     box-shadow: 0px 5px 20px rgba(109, 109, 109, 0.15);
@@ -59,9 +59,50 @@ p{
     background-color: white;
     border-top: none;
 }
-.container{
-    margin-top: 30px;
-    margin-bottom: 10px;
+.mrgn{
+    margin-bottom: 20px;
+    margin-top: 20px;
 }
+
+span.color-bar{
+    display: block;  
+    background-image: linear-gradient(to left, #FF9C35, #FFD019);
+    height: 6px;
+    width: 120px;
+    border-radius: 15px;
+    margin: 0 auto;  
+}
+.head-sec{
+    text-align: center;
+}
+.cat-sec{
+    margin-top: 60px;
+    margin-bottom: 100px;
+}
+.cat{
+    height: 400px;
+    margin-bottom: 50px;
+}
+.cat1{
+    height: 200px;
+    margin-top: 120px;
+    
+}
+.cat2-1{
+    height: 200px;
+}
+.cat2-2{
+    height: 200px;
+}
+.subcat, .subcat2{
+    width: 95%;
+}
+.subcat img{
+    width: 100px;
+    height: 100px;
+}
+
+
+
 
   
