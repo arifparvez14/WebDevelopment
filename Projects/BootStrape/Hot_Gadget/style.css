@@ -1,0 +1,44 @@
+.carousel-item{
+    padding: 20px 40px;
+    background-color: white
+}
+
+.carousel-indicators li {
+    background-color: rgb(160, 160, 160);
+    height: 8px;
+    width: 12px;
+    border-radius: 6px;
+    border: none;
+}
+
+.carousel-indicators .active {
+    width: 30px;
+    background-image: linear-gradient(to right, #FF9C35, #FFD019);
+}
+.carousel-inner img{
+    padding-left: 20px;
+}
+.carousel-inner p{
+    padding-right: 10px;
+}
+
+h1{
+    font-size: 30px;
+}
+
+p{
+    font-size: 15px;
+    color: gray;
+    font-family: Poppins, sans-serif;
+    text-align: justify;
+}
+
+.buy_now_button{
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 25px;
+    cursor: pointer;
+}
+  
