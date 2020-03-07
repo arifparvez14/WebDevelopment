@@ -47,3 +47,15 @@
     background-color: white;
     border-top: none;
 }
+#subscribe{
+    height: 300px;
+}
+#subscribe h6{
+    color: gray;
+}
+.form-control{
+    margin-bottom: 5px;
+}
+footer{
+    text-align: center;
+}
