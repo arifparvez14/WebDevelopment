@@ -25,9 +25,9 @@
 
                      <div class="col-md-5 center-item">
                         <div class="input-group number-spinner">
-                           <button class="btn btn-default"><i class="fas fa-minus"></i></button>
-                           <input type="text" class="form-control text-center" value="1">
-                           <button class="btn btn-default"><i class="fas fa-plus"></i></button>
+                           <button id="phoneMinusBtn" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                           <input id="phoneCount" type="text" class="form-control text-center" value="1">
+                           <button id="phonePlusBtn" class="btn btn-default"><i class="fas fa-plus"></i></button>
                         </div>
                         <h5>$1219</h5>
                         <img src="images/remove.png" alt="" class="remove-item">
@@ -43,9 +43,9 @@
                      </div>
                      <div class="col-md-5 center-item">
                         <div class="input-group number-spinner">
-                           <button class="btn btn-default"><i class="fas fa-minus"></i></button>
-                           <input type="text" class="form-control text-center" value="1">
-                           <button class="btn btn-default"><i class="fas fa-plus"></i></button>
+                           <button id="coverMinusBtn" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                           <input id="coverCount" type="text" class="form-control text-center" value="1">
+                           <button id="coverPlusBtn" class="btn btn-default"><i class="fas fa-plus"></i></button>
 
                         </div>
                         <h5>$59</h5>
@@ -77,6 +77,59 @@
          </div>
       </div>
    </section>
+
+   <script>
+      //Phone plus minus btn event handle
+      const increasePhone = document.getElementById("phonePlusBtn");
+      increasePhone.addEventListener("click", function(){
+         /** Increase number*/
+         increaseOrDecreaseCount("phoneCount", true)
+
+         /** Increase price*/
+
+
+         /** Increase Amount*/
+
+
+      });
+
+      const decreasePhone = document.getElementById("phoneMinusBtn");
+      decreasePhone.addEventListener("click", function(){
+         increaseOrDecreaseCount("phoneCount", false)
+      })
+
+      //Cover plus minus btn event handle
+      const increaseCover = document.getElementById("coverPlusBtn");
+      increaseCover.addEventListener("click", function(){
+         increaseOrDecreaseCount("coverCount", true)
+      });
+
+      const decreaseCover = document.getElementById("coverMinusBtn");
+      decreaseCover.addEventListener("click", function(){
+         increaseOrDecreaseCount("coverCount", false)
+      })
+
+      function increaseOrDecreaseCount(id, increase){
+         if(increase == true) {
+            const currentNumberString = document.getElementById(id).value;
+            var currentNumber = parseInt(currentNumberString);
+            currentNumber = currentNumber + 1;
+            document.getElementById(id).value = currentNumber;
+         } 
+         else if (increase == false) {
+            const currentNumberString = document.getElementById(id).value;
+            var currentNumber = parseInt(currentNumberString);
+            currentNumber = currentNumber - 1;
+            if (currentNumber < 0){ document.getElementById(id).value = 0;} 
+            else { document.getElementById(id).value = currentNumber;}
+         }
+      }
+
+   </script>
+
+   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 
 </html>
