@@ -25,11 +25,11 @@
 
                      <div class="col-md-5 center-item">
                         <div class="input-group number-spinner">
-                           <button class="btn btn-default"><i class="fas fa-minus"></i></button>
-                           <input type="text" class="form-control text-center" value="1">
-                           <button class="btn btn-default"><i class="fas fa-plus"></i></button>
+                           <button id="phoneMinusBtn" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                           <input id="phoneCount" type="text" class="form-control text-center" value="1">
+                           <button id="phonePlusBtn" class="btn btn-default"><i class="fas fa-plus"></i></button>
                         </div>
-                        <h5>$1219</h5>
+                        <h5>$ <span id="phonePrice">1219</span></h5>
                         <img src="images/remove.png" alt="" class="remove-item">
                      </div>
                   </div>
@@ -43,12 +43,12 @@
                      </div>
                      <div class="col-md-5 center-item">
                         <div class="input-group number-spinner">
-                           <button class="btn btn-default"><i class="fas fa-minus"></i></button>
-                           <input type="text" class="form-control text-center" value="1">
-                           <button class="btn btn-default"><i class="fas fa-plus"></i></button>
+                           <button id="coverMinusBtn" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                           <input id="coverCount" type="text" class="form-control text-center" value="1">
+                           <button id="coverPlusBtn" class="btn btn-default"><i class="fas fa-plus"></i></button>
 
                         </div>
-                        <h5>$59</h5>
+                        <h5>$ <span id="coverPrice">59</span></h5>
                         <img src="images/remove.png" alt="" class="remove-item">
                      </div>
                   </div>
@@ -64,9 +64,9 @@
                      </div>
 
                      <div class="col-md-4 status">
-                        <h5>$1,278</h5>
+                        <h5>$ <span id="subtotal">1278</span></h5>
                         <h5>$0</h5>
-                        <h5>$1,278</h5>
+                        <h5>$ <span id="total">1278</span></h5>
                      </div>
                   </div>
                </div>
@@ -77,6 +77,117 @@
          </div>
       </div>
    </section>
+
+   <script>
+      //Phone plus minus btn event handle
+      const increasePhone = document.getElementById("phonePlusBtn");
+      increasePhone.addEventListener("click", function () {
+
+         var currentNumber = getNumber("phoneCount");
+         increaseOrDecreaseCount("phoneCount", currentNumber, true);
+         increaseOrDecreaseAmount("phonePrice", currentNumber, true);
+         updateSubtotalAndTotal()
+      });
+
+      const decreasePhone = document.getElementById("phoneMinusBtn");
+      decreasePhone.addEventListener("click", function () {
+
+         const currentNumber = getNumber("phoneCount");
+         increaseOrDecreaseCount("phoneCount", currentNumber, false);
+         increaseOrDecreaseAmount("phonePrice", currentNumber, false);
+         updateSubtotalAndTotal()
+      })
+
+      //Cover plus minus btn event handle
+      const increaseCover = document.getElementById("coverPlusBtn");
+      increaseCover.addEventListener("click", function () {
+
+         const currentNumber = getNumber("coverCount");
+         increaseOrDecreaseCount("coverCount", currentNumber, true);
+         increaseOrDecreaseAmount("coverPrice", currentNumber, true);
+         updateSubtotalAndTotal()
+      });
+
+      const decreaseCover = document.getElementById("coverMinusBtn");
+      decreaseCover.addEventListener("click", function () {
+
+         const currentNumber = getNumber("coverCount");
+         increaseOrDecreaseCount("coverCount", currentNumber, false);
+         increaseOrDecreaseAmount("coverPrice", currentNumber, false);
+         updateSubtotalAndTotal()
+      })
+
+
+      //Utils
+      function getNumber(id) {
+         const currentNumberString = document.getElementById(id).value;
+         var currentNumber = parseInt(currentNumberString);
+         return currentNumber;
+      }
+
+      function updateSubtotalAndTotal(){
+         const subTotalText = document.getElementById("phonePrice").innerText
+         const totalText = document.getElementById("coverPrice").innerText
+         var subTotalNumber = parseInt(subTotalText);
+         var totalNumber = parseInt(totalText);
+         var totalAmount = subTotalNumber + totalNumber
+         document.getElementById("subtotal").innerText = totalAmount
+         document.getElementById("total").innerText = totalAmount
+      }
+
+      function increaseOrDecreaseCount(id, currentNumber, increase) {
+         if (increase == true) {
+            currentNumber = currentNumber + 1;
+            document.getElementById(id).value = currentNumber;
+         }
+         else if (increase == false) {
+            currentNumber = currentNumber - 1;
+            if (currentNumber < 0) { document.getElementById(id).value = 0; }
+            else { document.getElementById(id).value = currentNumber; }
+         }
+      }
+
+      function increaseOrDecreaseAmount(id, currentNumber, increase) {
+         if (id=="phonePrice") {
+            if (increase == true) {
+               var totalAmount = (currentNumber + 1) * 1219;
+               document.getElementById(id).innerText = totalAmount;
+            }
+            else if (increase == false) {
+               var totalAmountString = document.getElementById(id).innerText
+               var totalAmount = parseInt(totalAmountString);
+               totalAmount = totalAmount - 1219;
+               if (totalAmount < 0) { document.getElementById(id).innerText = 0; }
+               else { document.getElementById(id).innerText = totalAmount; }
+            }
+         }
+         else if(id=="coverPrice") {
+            if (increase == true) {
+               var totalAmount = (currentNumber + 1) * 59;
+               document.getElementById(id).innerText = totalAmount;
+            }
+            else if (increase == false) {
+               var totalAmountString = document.getElementById(id).innerText
+               var totalAmount = parseInt(totalAmountString);
+               totalAmount = totalAmount - 59;
+               if (totalAmount < 0) { document.getElementById(id).innerText = 0; }
+               else { document.getElementById(id).innerText = totalAmount; }
+            }
+         }
+      }
+
+
+   </script>
+
+   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"></script>
 </body>
 
 </html>
