@@ -27,14 +27,19 @@
         console.log(userFromJSON);
     </script> -->
     <ul id="user-container">
-
+        <input id="title" type="text" placeholder="First Unput">
+        <br>
+        <input id="main" type="text" placeholder="Input er main jinis">
+        <br>
+        <button id="submit">Submit</button>
     </ul>
     <script>
+        /*------------- Get Request -------------*/
+
         fetch('https://jsonplaceholder.typicode.com/users')
         .then(response => response.json())
         .then(json => display(json))
         .catch(error => console.log(error))
-        
 
         function display(users){
             const userName = users.map (user => user.username);
@@ -47,6 +52,28 @@
                 ul.appendChild(li);
             }
         }
+
+        /*------------- Post Request -------------*/
+
+        document.getElementById("submit").addEventListener("click", function(){
+            const title = document.getElementById("title").value;
+            const bodyMain = document.getElementById("main").value;
+            const post = {title: title, body: bodyMain, userId: 1};
+            nowPostToServer(post);
+        })
+
+        function nowPostToServer(postInfo){
+                fetch('https://jsonplaceholder.typicode.com/posts', {
+                method: 'POST',
+                body: JSON.stringify(postInfo),
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8"
+                }
+            })
+            .then(response => response.json())
+            .then(data => console.log(data));
+        }
+        
     </script>
 </body>
 
