@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { unstable_renderSubtreeIntoContainer } from 'react-dom';
 
 function App() {
   const nayoks = ['Anwar', 'Jafor', 'Alomgir', 'Salman', 'Shakib']
@@ -15,6 +16,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <Counter></Counter>
+        <Users></Users>
         <ul>
           {
             nayoks.map(nayok => <li>{nayok}</li>)
@@ -49,6 +51,27 @@ function Counter() {
       <h1>Count: {count}</h1>
       <button onMouseMove={handleDecrease}>Decrease</button>
       <button onClick={handleIncrease}>Increase</button>
+    </div>
+  )
+}
+
+function Users(){
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    fetch('https://jsonplaceholder.typicode.com/users')
+    .then(res => res.json())
+    .then(data => setUsers(data));
+  },[])
+
+  return (
+    <div>
+      <h3>Dynamic User: {users.length}</h3>
+      <ul>
+        {
+          users.map(user => <li>{user.email}</li>)
+        }
+      </ul>
     </div>
   )
 }
