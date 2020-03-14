@@ -1,0 +1,12 @@
+.header img{
+    margin-top: 10px;
+    height: 100px;
+    width: 200px;
+}
+.header h3{
+    padding-top: 0px;
+}
+.header{
+    text-align: center;
+    background-color: bisque;
+}
