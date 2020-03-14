@@ -2,11 +2,9 @@
     margin-top: 10px;
     height: 100px;
     width: 200px;
-}
-.header h3{
-    padding-top: 0px;
+    border-radius: 10px;
 }
 .header{
     text-align: center;
-    background-color: bisque;
+    background-color: blueviolet;
 }
