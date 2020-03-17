@@ -44,7 +44,9 @@ function App() {
           email: '',
           photo: '',
           password: '',
-          isValid: false
+          error: '',
+          isValid: false,
+          existingUser: false
         }
         setUser(signedOutUser);
       }).catch(err => {
@@ -52,22 +54,25 @@ function App() {
       });
   }
 
-  const is_valid_email = email =>  /(.+)@(.+){2,}\.(.+){2,}/.test(email);
+  const is_valid_email = email => /(.+)@(.+){2,}\.(.+){2,}/.test(email);
   const hasNumber = input => /\d/.test(input);
+  const switchForm = e => {
+    const createdUser = { ...user };
+    createdUser.existingUser = e.target.checked;
+    setUser(createdUser);
+  }
 
   const handleChange = event => {
     const newUserInfo = {
       ...user
     }
-
     let isValid = true;
-    if (event.target.name === 'email'){
+    if (event.target.name === 'email') {
       isValid = is_valid_email(event.target.value);
     }
 
-    let isValidPassword = true;
-    if (event.target.name === 'password'){
-      isValid = event.target.value > 8 && hasNumber(event.target.value);
+    if (event.target.name === 'password') {
+      isValid = event.target.value.length > 8 && hasNumber(event.target.value);
     }
 
     newUserInfo[event.target.name] = event.target.value;
@@ -75,12 +80,46 @@ function App() {
     setUser(newUserInfo);
   }
 
-  const createAccount = () => {
-    if(user.isValid){
-      console.log(user.email, user.password);
-    } else {
-      console.log('Form is not valid');
+  const createAccount = (event) => {
+    if (user.isValid) {
+      firebase.auth().createUserWithEmailAndPassword(user.email, user.password)
+        .then(res => {
+          const createdUser = { ...user };
+          createdUser.isSignedIn = true;
+          createdUser.error = '';
+          setUser(createdUser);
+        })
+        .catch(error => {
+          const createdUser = { ...user };
+          createdUser.isSignedIn = false;
+          createdUser.error = error.message;
+          setUser(createdUser);
+        })
     }
+    event.preventDefault();
+    event.target.reset();
+  }
+
+  const signInUser = event => {
+    
+    if (user.isValid) {
+      firebase.auth().signInWithEmailAndPassword(user.email, user.password)
+        .then(res => {
+          const createdUser = { ...user };
+          createdUser.isSignedIn = true;
+          createdUser.error = '';
+          setUser(createdUser);
+        })
+        .catch(error => {
+          const createdUser = { ...user };
+          createdUser.isSignedIn = false;
+          createdUser.error = error.message;
+          setUser(createdUser);
+        })
+    }
+    console.log(user);
+    event.preventDefault();
+    event.target.reset();
   }
 
   return (
@@ -98,13 +137,29 @@ function App() {
       }
       <h1>Our own authentication</h1>
 
-      <form onSubmit={createAccount}>
+      <input type="checkbox" name="switchForm" onChange={switchForm} id="switchForm" />
+      <label htmlFor="switchForm"> Returning User</label>
+
+      <form style={{display:user.existingUser ? 'block':'none'}} onSubmit={signInUser}>
+        <input type="text" onBlur={handleChange} name="email" placeholder="Your Email" required />
+        <br />
+        <input type="password" onBlur={handleChange} name="password" placeholder="Your Password" required />
+        <br />
+        <input type="submit" value="SignIn" />
+      </form>
+
+      <form style={{display:user.existingUser ? 'none':'block'}} onSubmit={createAccount}>
+        <input type="text" onBlur={handleChange} name="name" placeholder="Your Name" required />
+        <br />
         <input type="text" onBlur={handleChange} name="email" placeholder="Your Email" required />
         <br />
         <input type="password" onBlur={handleChange} name="password" placeholder="Your Password" required />
         <br />
         <input type="submit" value="Create Account" />
       </form>
+      {
+        user.error && <p style={{ color: 'red' }}>{user.error}</p>
+      }
     </div>
   );
 }
