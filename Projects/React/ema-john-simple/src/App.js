@@ -6,6 +6,7 @@ import Review from './components/Review/Review'
 import Inventory from './components/Inventory/Inventory'
 import NotFound from './components/NotFound/NotFound'
 import ProductDetail from './components/ProductDetail/ProductDetail'
+import Login from './components/Login/Login'
 import {
   BrowserRouter as Router,
   Switch,
@@ -34,6 +35,9 @@ function App() {
           </Route>
           <Route path="/product/:productKey">
               <ProductDetail></ProductDetail>
+          </Route>
+          <Route path="/login">
+              <Login></Login>
           </Route>
           <Route path="*">
             <NotFound></NotFound>
