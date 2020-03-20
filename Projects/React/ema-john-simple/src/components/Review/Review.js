@@ -4,6 +4,7 @@ import fakeData from '../../fakeData';
 import ReviewItem from '../ReviewItem/ReviewItem';
 import Cart from '../Cart/Cart';
 import happyImage from '../../images/giphy.gif'
+import { Link } from 'react-router-dom';
 
 const Review = () => {
 
@@ -54,7 +55,10 @@ const Review = () => {
             </div>
             <div className="cart-container">
                 <Cart cart={cart}>
-                    <button onClick={handlePlaceOrder} className="main-button">Place Order</button>
+                    {/* <button onClick={handlePlaceOrder} className="main-button">Place Order</button> */}
+                    <Link to="shipment">
+                        <button className="main-button">Place Order</button>
+                    </Link>
                 </Cart>
             </div>
         </div>

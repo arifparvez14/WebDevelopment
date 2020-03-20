@@ -2,6 +2,7 @@ import React from 'react';
 import logo from '../../images/logo.png';
 import './Header.css';
 import { useAuth } from '../Login/useAuth';
+import { Link } from 'react-router-dom';
 
 
 // const usePrevious = value => {
@@ -18,7 +19,7 @@ const Header = () => {
     // const previous = usePrevious(count);
     //const user = useContext(userContext);
     const auth = useAuth();
-    console.log(auth);
+    console.log(auth.user);
     return (
         <div className="header">
             {/* <h1>Count: {count} previous: {previous}</h1>
@@ -29,7 +30,10 @@ const Header = () => {
                 <a href="/shop">Shop</a>
                 <a href="/review">Order Review</a>
                 <a href="/inventory">Manage Inventory</a>
-                <span style={{color:'yellow'}}>{}</span>
+                {
+                        auth.user ? <span style={{color:'yellow'}}>{auth.user.name}</span>
+                        : <a  href="/login">SignIn</a>
+                }
             </nav>
         </div>
     );

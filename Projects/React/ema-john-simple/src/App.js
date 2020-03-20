@@ -9,6 +9,7 @@ import ProductDetail from './components/ProductDetail/ProductDetail';
 import Login from './components/Login/Login';
 import { AuthContextProvider } from './components/Login/useAuth';
 import {BrowserRouter as Router, Switch, Route,Link } from "react-router-dom";
+import Shipment from './components/Shipment/Shipment';
 
 
 // export const UserContext = createContext();
@@ -41,6 +42,9 @@ function App() {
           </Route>
           <Route path="/login">
               <Login></Login>
+          </Route>
+          <Route path="/shipment">
+              <Shipment></Shipment>
           </Route>
           <Route path="*">
             <NotFound></NotFound>
