@@ -54,6 +54,9 @@ const Review = () => {
             {
                 thankYou
             }
+            {
+                !cart.length && <h1>You card is empty. <a href ="/shop">Keep shopping</a></h1>
+            }
             </div>
             <div className="cart-container">
                 <Cart cart={cart}>

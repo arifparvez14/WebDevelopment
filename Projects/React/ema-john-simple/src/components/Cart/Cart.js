@@ -48,7 +48,6 @@ const Cart = (props) => {
                 props.children
             }
             
-            <p>{}</p>
         </div>
     );
 };

@@ -61,9 +61,11 @@ const Auth = () => {
     }
 
     const signOut = () => {
-        firebase.auth().signOut().then(function () {
+        return firebase.auth().signOut().then(function () {
             setUser(null);
+            return true;
         }).catch(function (error) {
+            return false;
         });
     }
 

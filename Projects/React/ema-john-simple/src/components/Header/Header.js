@@ -19,7 +19,6 @@ const Header = () => {
     // const previous = usePrevious(count);
     //const user = useContext(userContext);
     const auth = useAuth();
-    console.log(auth.user);
     return (
         <div className="header">
             {/* <h1>Count: {count} previous: {previous}</h1>
@@ -31,8 +30,12 @@ const Header = () => {
                 <a href="/review">Order Review</a>
                 <a href="/inventory">Manage Inventory</a>
                 {
-                        auth.user ? <span style={{color:'yellow'}}>{auth.user.name}</span>
-                        : <a  href="/login">SignIn</a>
+                        auth.user && <span style={{color:'yellow'}}>Welcome {auth.user.name}  </span>
+                        
+                }
+                {
+                        auth.user ? <a  href="/login">Sign Out</a>
+                        : <a href = "/login">Sign In</a>
                 }
             </nav>
         </div>
