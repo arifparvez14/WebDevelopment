@@ -1,0 +1,18 @@
+.main-button{
+    width: 100px;
+    height: 30px;
+    color: black;
+    background-color: white;
+    border: none;
+    font-weight: bold;
+}
+
+button:focus{
+    color: red;
+    border: none;
+    border-color: white;
+    font-weight: bold;
+} 
+.cards{
+    margin-bottom: 10px;
+}

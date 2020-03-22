@@ -7,6 +7,7 @@ import Cart from '../Cart/Cart'
 const FriendList = () => {
 
     const friends = fakeData;
+    console.log(friends);
     const [friend, useFriend] = useState(friends);
     const [cart, setCart] = useState([]);
 
