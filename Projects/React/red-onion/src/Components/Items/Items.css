@@ -13,6 +13,30 @@ button:focus{
     border-color: white;
     font-weight: bold;
 } 
-.cards{
-    margin-bottom: 10px;
+.components{
+    margin-bottom: 30px;
+}
+
+.nav-item{
+    align-items: center;
+    margin-left: 20px;
+}
+.signup-btn{
+    background-color: red;
+    border-radius: 20px;
+    padding: 0px 10px 0px 10px;
+    color: green;
+}
+.background{
+    height: 400px;
+}
+
+.bgImgTxt{
+    line-height: 400px;
+    text-align: center;
+}
+
+.bgImgTxt h1{
+    display: inline-block;
+    vertical-align: middle;
 }
