@@ -6,6 +6,7 @@ import Header from './Components/Header/Header';
 import Banner from './Components/Banner/Banner';
 import SignUp from './Components/SignUp/SignUp';
 import Foods from './Components/Foods/Foods';
+import Features from './Components/Features/Features';
 
 
 function App() {
@@ -50,9 +51,10 @@ function App() {
                 <div className="main">
                     <Switch>
                         <Route exact path="/">
-                            <Header></Header>
+                            <Header cart={cart}></Header>
                             <Banner></Banner>
                             <Foods cart={cart}></Foods>
+                            <Features></Features>
                         </Route>
                         <Route path="/login">
                             <SignUp></SignUp>
