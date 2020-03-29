@@ -7,6 +7,8 @@ import Banner from './Components/Banner/Banner';
 import SignUp from './Components/SignUp/SignUp';
 import Foods from './Components/Foods/Foods';
 import Features from './Components/Features/Features';
+import Footer from './Components/Footer/Footer';
+import NotFound from './Components/NotFound/NotFound';
 
 
 function App() {
@@ -55,9 +57,13 @@ function App() {
                             <Banner></Banner>
                             <Foods cart={cart}></Foods>
                             <Features></Features>
+                            <Footer></Footer>
                         </Route>
                         <Route path="/login">
                             <SignUp></SignUp>
+                        </Route>
+                        <Route path="*">
+                            <NotFound></NotFound>
                         </Route>
                     </Switch>
                 </div>
