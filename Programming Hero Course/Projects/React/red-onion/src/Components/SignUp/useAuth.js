@@ -16,8 +16,18 @@ export const useAuth = () => useContext(AuthContext);
 export const  PrivateRoute = ({ children, ...rest }) => {
     const auth = useAuth();
     return (
-      <Route {...rest} render={({ location }) => auth.user ? ( children) : (
-            <Redirect to={{ pathname: "/login", state: { from: location }}}/>
+      <Route
+        {...rest}
+        render={({ location }) =>
+          auth.user ? (
+            children
+          ) : (
+            <Redirect
+              to={{
+                pathname: "/login",
+                state: { from: location }
+              }}
+            />
           )
         }
       />
@@ -74,4 +84,4 @@ const Auth = () => {
     }
 }
 
-export default Auth;
+export default Auth; 

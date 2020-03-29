@@ -4,6 +4,7 @@ import { AuthProvider, PrivateRoute } from './Components/SignUp/useAuth';
 import './App.css';
 import Header from './Components/Header/Header';
 import Banner from './Components/Banner/Banner';
+import SignUp from './Components/SignUp/SignUp';
 
 
 function App() {
@@ -16,6 +17,9 @@ function App() {
                         <Route exact path="/">
                             <Header></Header>
                             <Banner></Banner>
+                        </Route>
+                        <Route path="/login">
+                            <SignUp></SignUp>
                         </Route>
                     </Switch>
                 </div>
