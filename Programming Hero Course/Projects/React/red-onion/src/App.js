@@ -9,42 +9,48 @@ import Foods from './Components/Foods/Foods';
 import Features from './Components/Features/Features';
 import Footer from './Components/Footer/Footer';
 import NotFound from './Components/NotFound/NotFound';
+import FoodDetails from './Components/FoodDetails/FoodDetails';
+import Shipment from './Components/Shipment/Shipment';
+import OrderComplete from './Components/OrderComplete/OrderComplete';
+import SearchResult from './Components/SearchResult/SearchResult';
 
 
 function App() {
 
-    const [cart, setCart] = useState([]);
-    const [deliveryDetails, setDeliveryDetails] = useState({
-        todoor: null, road: null, flat: null, businessname: null, address: null
+    const [cart , setCart] = useState([]);
+    const [deliveryDetails , setDeliveryDetails] = useState({
+      todoor:null,road:null, flat:null, businessname:null, address: null
     });
-
-    const deliveryDetailsHandler = (data) => { setDeliveryDetails(data);}
-    const clearCart = () => {setCart([]);}
-
+    const deliveryDetailsHandler = (data) => {
+        setDeliveryDetails(data)
+    }
+    const clearCart = () => {
+      setCart([])
+    }
     const cartHandler = (data) => {
-        const alreadyAdded = cart.find(crt => crt.id == data.id);
-        const newCart = [...cart, data];
+      const alreadyAdded = cart.find(crt => crt.id == data.id );
+      const newCart = [...cart,data]
+      setCart(newCart);
+      if(alreadyAdded){
+        const reamingCarts = cart.filter(crt => cart.id != data);
+        setCart(reamingCarts);
+      }else{
+        const newCart = [...cart,data]
         setCart(newCart);
-
-        if (alreadyAdded){
-            const remainingCarts = cart.filter(crt => cart.id != data);
-            setCart(remainingCarts);
-        } else {
-            const newCart = [...cart, data];
-            setCart(newCart);
-        }
+      }
+     
     }
 
     const checkOutItemHandler = (productId, productQuantity) => {
-        const newCart = cart.map(item => {
-            if (item.id == productId){
-                item.quantity = productQuantity;
-            }
-            return item;
-        })
+      const newCart = cart.map(item => {
+        if(item.id == productId){
+            item.quantity = productQuantity;
+        }
+        return item;
+      })
 
-        const filterdCart = newCart.filter(item => item.quantity > 0)
-        setCart(filterdCart);
+      const filteredCart = newCart.filter(item => item.quantity > 0)
+      setCart(filteredCart)
     }
 
     return (
@@ -59,6 +65,28 @@ function App() {
                             <Features></Features>
                             <Footer></Footer>
                         </Route>
+                        <Route path="/food/:id">
+                            <Header cart={cart}></Header>
+                            <FoodDetails cart={cart} cartHandler={cartHandler}></FoodDetails>
+                            <Footer></Footer>
+                        </Route>
+                        <Route path="/search=:searchQuery">
+                            <Header cart={cart}></Header>
+                            <Banner></Banner>
+                            <SearchResult></SearchResult>
+                            <Features></Features>
+                            <Footer></Footer>
+                        </Route>
+                        <PrivateRoute path="/checkout">
+                            <Header cart={cart}></Header>
+                            <Shipment deliveryDetails={deliveryDetails} deliveryDetailsHandler={deliveryDetailsHandler} cart={cart} clearCart={clearCart} checkOutItemHandler={checkOutItemHandler}></Shipment>
+                            <Footer></Footer>
+                         </PrivateRoute>
+                         <PrivateRoute path="/order-complete">
+                            <Header cart={cart}></Header>
+                            <OrderComplete deliveryDetails={deliveryDetails}></OrderComplete>
+                            <Footer></Footer>
+                        </PrivateRoute>
                         <Route path="/login">
                             <SignUp></SignUp>
                         </Route>
