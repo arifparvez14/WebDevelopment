@@ -8,6 +8,31 @@ app.use(bodyParser.json()) // parse application/json
 
 const users = ['Asad', 'Moin', 'Saber', 'Susmita', 'Sohana', 'Sabana'];
 
+//DB connection
+
+
+const MongoClient = require('mongodb').MongoClient;
+const uri = "mongodb+srv://dbUser:jwA4rG7yXqZt2QkU@cluster0-9t1sw.mongodb.net/test?retryWrites=true&w=majority";
+const client = new MongoClient(uri, { useNewUrlParser: true });
+client.connect(err => {
+  const collection = client.db("onlineStore").collection("products");
+  
+  collection.insertOne({
+      name: "mobile",
+      price: 100,
+      stock: 2
+  }, (err, res) => {
+      console.log("Successfully inserted")
+  })
+  
+  console.log("Database Connected...")
+  client.close();
+});
+
+
+const user = 'dbUser';
+const password = 'jwA4rG7yXqZt2QkU';
+
 //Get
 app.get('/', (req, res) => {
     const fruit = {
