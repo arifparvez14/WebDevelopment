@@ -64,6 +64,26 @@ app.get('/product/:key', (req, res) => {
 })
 
 //Post
+
+app.post('/getProductsByKey', (req, res) => {
+    const key = req.params.key;
+    const productKeys = req.body;
+
+    client = new MongoClient(uri, { useNewUrlParser: true });
+    client.connect(err => {
+        const collection = client.db("onlineStore").collection("products");
+        collection.find({key: { $in: productKeys }}).toArray((err, documents) => {
+            if (err) {
+                console.log(err)
+                res.status(500).send({message:err})
+            } else {
+                res.send(documents);
+            }
+        })
+        client.close();
+      });
+})
+
 app.post('/addProduct',(req, res) => {
     const product = req.body;
     console.log(product)
