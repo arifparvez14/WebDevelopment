@@ -22,7 +22,6 @@ const Shop = () => {
     useEffect(()=> {
         const saveCart = getDatabaseCart();
         const productKeys = Object.keys(saveCart);
-        console.log(products);
         if (products.length) {
             const previousCart = productKeys.map(existingKey => {
                 const product = products.find(pd => pd.key === existingKey);

@@ -45,12 +45,22 @@ app.get('/products', (req, res) => {
       });
 });
 
-app.get('/users/:id', (req, res) => {
-    const id = req.params.id;
-    console.log(req.query);
-    const name = users[id]; 
-    console.log(name);
-    res.send({id, name})
+app.get('/product/:key', (req, res) => {
+    const key = req.params.key;
+    
+    client = new MongoClient(uri, { useNewUrlParser: true });
+    client.connect(err => {
+        const collection = client.db("onlineStore").collection("products");
+        collection.find({key}).toArray((err, documents) => {
+            if (err) {
+                console.log(err)
+                res.status(500).send({message:err})
+            } else {
+                res.send(documents[0]);
+            }
+        })
+        client.close();
+      });
 })
 
 //Post
