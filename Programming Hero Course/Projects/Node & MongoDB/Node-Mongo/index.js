@@ -102,6 +102,26 @@ app.post('/addProduct',(req, res) => {
       });
 })
 
+app.post('/placeOrder',(req, res) => {
+    const orderDetails = req.body;
+    orderDetails.orderTime = new Date();
+
+    client = new MongoClient(uri, { useNewUrlParser: true });
+    client.connect(err => {
+        const collection = client.db("onlineStore").collection("orders");
+        collection.insertOne(orderDetails, (err, result) => {
+            if (err) {
+                console.log(err)
+                res.status(500).send({message:err})
+            } else {
+                res.send(result.ops[0]);
+                
+            }
+        })
+        client.close();
+      });
+})
+
 
 const port = process.env.PORT || 4400
 app.listen(port, () => console.log("Listening to port", port));

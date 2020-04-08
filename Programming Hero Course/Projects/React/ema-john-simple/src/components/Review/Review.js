@@ -1,23 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { getDatabaseCart, removeFromDatabaseCart, processOrder } from '../../utilities/databaseManager';
+import { getDatabaseCart, removeFromDatabaseCart } from '../../utilities/databaseManager';
 
 import ReviewItem from '../ReviewItem/ReviewItem';
 import Cart from '../Cart/Cart';
-import happyImage from '../../images/giphy.gif'
 import { Link } from 'react-router-dom';
 import { useAuth } from '../Login/useAuth';
 
 const Review = () => {
 
     const [cart, setCart] = useState([]);
-    const [orderPlaced, setOrderPlaced]= useState(false);
     const auth = useAuth();
-
-    const handlePlaceOrder = () => {
-        setCart([]);
-        setOrderPlaced(true);
-        processOrder();
-    }
 
     const removeProduct = (productKey) => {
         const newCart = cart.filter(pd => pd.key !== productKey);
@@ -28,7 +20,6 @@ const Review = () => {
     useEffect(() => {
         const savedCart = getDatabaseCart();
         const productKeys = Object.keys(savedCart);
-        console.log(productKeys);
 
         fetch('http://localhost:4200/getProductsByKey', {
             method: 'POST',
@@ -48,11 +39,6 @@ const Review = () => {
         })
     }, []);
 
-    let thankYou;
-    if (orderPlaced) {
-        thankYou = <img src={happyImage} alt=""/>
-    } 
-
     return (
         <div className="twin-container">
             <div className="product-container">
@@ -62,9 +48,7 @@ const Review = () => {
                     removeProduct = {removeProduct} 
                     product={pd}></ReviewItem>)
             }
-            {
-                thankYou
-            }
+
             {
                 !cart.length && <h1>You card is empty. <a href ="/shop">Keep shopping</a></h1>
             }
