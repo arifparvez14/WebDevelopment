@@ -20,7 +20,7 @@ const Shipment = () => {
         })
         .then(res => res.json())
         .then(data => {
-            alert('Successfully placed your order with orderID:' +data._id)
+            alert('Successfully placed your order with orderID: ' +data._id)
             processOrder();
         }) 
     }

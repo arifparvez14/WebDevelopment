@@ -86,7 +86,6 @@ app.post('/getProductsByKey', (req, res) => {
 
 app.post('/addProduct',(req, res) => {
     const product = req.body;
-    console.log(product)
     client = new MongoClient(uri, { useNewUrlParser: true });
     client.connect(err => {
         const collection = client.db("onlineStore").collection("products");
