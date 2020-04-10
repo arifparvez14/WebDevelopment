@@ -6,9 +6,11 @@ import { getDatabaseCart, processOrder } from '../../utilities/databaseManager';
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
 import CheckoutForm from '../CheckoutForm/CheckoutForm'
+import { useState } from 'react';
 
 const Shipment = () => {
     const { register, handleSubmit, errors } = useForm();
+    const [shipInfoAdded, setShipInfoAdded] = useState(null);
     const auth = useAuth();
 
     const stripePromise = loadStripe('pk_test_KUPWr1KiYRX9K0sFYhmfNoNW00YZ0gv9G5');
@@ -30,14 +32,15 @@ const Shipment = () => {
         })
             .then(res => res.json())
             .then(data => {
-                alert('Successfully placed your order with orderID: ' + data._id)
-                processOrder();
+                //alert('Successfully placed your order with orderID: ' + data._id)
+                //processOrder();
+                setShipInfoAdded(true);
             })
     }
     return (
         <div className="container">
             <div className="row">
-                <div className="col-md-6">
+                <div style={{display: shipInfoAdded && 'none'}} className="col-md-6">
                     <   h3>Shipment Information</h3>
                     < form className="ship-form" onSubmit={handleSubmit(onSubmit)} >
                         < input name="name"
@@ -68,7 +71,7 @@ const Shipment = () => {
                         <input type="submit" />
                     </form >
                 </div>
-                <div className="col-md-6">
+                <div  style={{'margin-top': '200px', display: shipInfoAdded ? 'block' :'none'}} className="col-md-6">
                     <h3>Payment Information</h3>
                     <Elements stripe={stripePromise}>
                         <CheckoutForm></CheckoutForm>
