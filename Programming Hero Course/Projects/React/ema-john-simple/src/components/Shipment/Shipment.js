@@ -2,7 +2,7 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import './Shipment.css';
 import { useAuth } from '../Login/useAuth';
-import { getDatabaseCart, processOrder } from '../../utilities/databaseManager';
+import { getDatabaseCart, clearLocalShoppingCart} from '../../utilities/databaseManager';
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
 import CheckoutForm from '../CheckoutForm/CheckoutForm'
@@ -10,17 +10,24 @@ import { useState } from 'react';
 
 const Shipment = () => {
     const { register, handleSubmit, errors } = useForm();
-    const [shipInfoAdded, setShipInfoAdded] = useState(null);
+    const [shipInfo, setShipInfo] = useState(null);
+    const [orderID, setOrderID] = useState(null);
     const auth = useAuth();
 
     const stripePromise = loadStripe('pk_test_KUPWr1KiYRX9K0sFYhmfNoNW00YZ0gv9G5');
 
     const onSubmit = data => {
+        setShipInfo(data);
+    }
+
+
+    const handlePlaceOrder = (payment) => {
         const savedCart = getDatabaseCart();
         const orderDetails = {
             email: auth.user.email,
             cart: savedCart,
-            shipment: data
+            shipment: shipInfo,
+            payment: payment
         }
 
         fetch('http://localhost:4200/placeOrder', {
@@ -31,16 +38,17 @@ const Shipment = () => {
             body: JSON.stringify(orderDetails)
         })
             .then(res => res.json())
-            .then(data => {
-                //alert('Successfully placed your order with orderID: ' + data._id)
-                //processOrder();
-                setShipInfoAdded(true);
+            .then(order => {
+                //Clear local cart & give thanx
+                setOrderID(order._id);
+                clearLocalShoppingCart();
             })
     }
+
     return (
         <div className="container">
             <div className="row">
-                <div style={{display: shipInfoAdded && 'none'}} className="col-md-6">
+                <div style={{display: shipInfo && 'none'}} className="col-md-6">
                     <   h3>Shipment Information</h3>
                     < form className="ship-form" onSubmit={handleSubmit(onSubmit)} >
                         < input name="name"
@@ -71,11 +79,19 @@ const Shipment = () => {
                         <input type="submit" />
                     </form >
                 </div>
-                <div  style={{'margin-top': '200px', display: shipInfoAdded ? 'block' :'none'}} className="col-md-6">
+                <div  style={{ marginTop: '200px', display: shipInfo ? 'block' :'none'}} className="col-md-6">
                     <h3>Payment Information</h3>
                     <Elements stripe={stripePromise}>
-                        <CheckoutForm></CheckoutForm>
+                        <CheckoutForm handlePlaceOrder = {handlePlaceOrder}></CheckoutForm>
                     </Elements>
+                    <br/>
+                    {
+                        orderID && 
+                        <div>
+                            <h3>Thank you for shopping with us</h3>
+                            <p>Your order id is: {orderID}</p>
+                        </div>
+                    }
                 </div>
             </div>
         </div>

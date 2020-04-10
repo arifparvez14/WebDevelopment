@@ -6,7 +6,7 @@ import {
 } from '@stripe/react-stripe-js';
 import { useState } from 'react';
 
-const CheckoutForm = () => {
+const CheckoutForm = (props) => {
 
   const [paymentError, setPaymentError] = useState();
   const [paymentFinished, setPaymentFinished] = useState();
@@ -26,6 +26,9 @@ const CheckoutForm = () => {
     } else {
       setPaymentError(null);
       setPaymentFinished(paymentMethod);
+
+      const payment = {id: paymentMethod.id, last4:paymentMethod.card.last4}
+      props.handlePlaceOrder(payment);
     }
   };
 
