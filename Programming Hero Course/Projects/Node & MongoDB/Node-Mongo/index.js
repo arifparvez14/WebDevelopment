@@ -8,8 +8,8 @@ const app = express();
 app.use(cors()) //Solve cors problem
 app.use(bodyParser.json()) // parse application/json
 
-const user = process.env.DB_USER;
-const password = process.env.DB_PASS;
+//const user = process.env.DB_USER;
+//const password = process.env.DB_PASS;
 
 //const uri = `mongodb+srv://${user}:${password}@cluster0-9t1sw.mongodb.net/test?retryWrites=true&w=majority`;
 const uri = process.env.DB_PATH;
@@ -123,5 +123,5 @@ app.post('/placeOrder',(req, res) => {
 })
 
 
-const port = process.env.PORT || 4400
+const port = process.env.PORT || 4200
 app.listen(port, () => console.log("Listening to port", port));
