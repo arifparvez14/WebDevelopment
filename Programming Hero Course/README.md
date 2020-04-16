@@ -1,5 +1,5 @@
 
-# Node & Mongo #
+# Node & MongoDB Config #
 Create a simple server using Node & MongoDB
 
 - Initialize node:
