@@ -1,6 +1,6 @@
 
 # Node & MongoDB Config #
-Create a simple server using Node & MongoDB. Doc MongoDB:https://docs.mongodb.com/
+Create a simple server using Node & MongoDB. Doc MongoDB: https://docs.mongodb.com/
 
 - Initialize node:
 ```
@@ -36,7 +36,7 @@ npm isntall dotenv
 ```
 
 # Add Stripe #
-Way to add stripe on react project. Stripe doc: https://stripe.com/docs/stripe-js/react, stripe github: https://github.com/stripe/react-stripe-js
+Way to add stripe on react project. Stripe official doc: https://stripe.com/docs/stripe-js/react, Stripe github: https://github.com/stripe/react-stripe-js
 
 - Initialize stripe js:
 ```
