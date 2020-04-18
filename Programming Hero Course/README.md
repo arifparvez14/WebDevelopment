@@ -93,7 +93,7 @@ firebase login
 ```
 firebase init
 ```
-- * Follow thos instructions to initialize & complete setup:
+- Follow thos instructions to initialize & complete setup:
 ```
 Select Hosting, use your existing project, * use build as public directory, y for singleview app, n for index.htmloverride
 ```
