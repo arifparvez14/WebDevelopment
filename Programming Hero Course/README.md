@@ -35,13 +35,38 @@ npm isntall mongodb --save
 npm isntall dotenv
 ```
 
-# Add Stripe #
+# Add Stripe Payment #
 Way to add stripe on react project. Stripe official doc: https://stripe.com/docs/stripe-js/react, Stripe github: https://github.com/stripe/react-stripe-js
 
 - Initialize stripe js:
 ```
 npm install --save @stripe/react-stripe-js @stripe/stripe-js
 ```
+# Deploy DB to Heroku server#
+Getting start with heroku with nodejs. Install heroku cli on you local mechine. Follow the doc: https://devcenter.heroku.com/articles/getting-started-with-nodejs
 
+- Make sure your have heroku, node, npm & git already installed:
+```
+heroku --version, node --version, npm --version, git --version
+```
+- Heroku login:
+```
+heroku login
+```
+- Heroku create:
+```
+heroku create "optional_name"
+```
+- Deploy code to heroku:
+```
+git push heroku master
+```
+- Set env variable inside heroku:
+```
+get the variable from .env file
+```
 
-
+- Resolve application error:
+```
+npm install nodemon --save, git add ., git commit -m "Nodemon added", git push heroku master
+```
