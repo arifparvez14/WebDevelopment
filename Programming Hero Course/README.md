@@ -61,9 +61,9 @@ heroku create "optional_name"
 ```
 git push heroku master
 ```
-- Set env variable inside heroku:
+- Set env variable inside app configuration:
 ```
-get the variable from .env file
+get the variables from .env file
 ```
 
 - Resolve application error:
