@@ -70,3 +70,39 @@ get the variables from .env file
 ```
 npm install nodemon --save, git add ., git commit -m "Nodemon added", git push heroku master
 ```
+
+# Add Stripe Payment #
+Way to add stripe on react project. Stripe official doc: https://stripe.com/docs/stripe-js/react, Stripe github: https://github.com/stripe/react-stripe-js
+
+- Initialize stripe js:
+```
+npm install --save @stripe/react-stripe-js @stripe/stripe-js
+```
+# Deploy app using firebase #
+Checkout firebase documentation (https://firebase.google.com/docs/web/setup?gclid=Cj0KCQjwyur0BRDcARIsAEt86IAMpgs0funm3yteEHZJ10oDKj6cVCDfmPXM6Cz2cpex7p3K7nM0EM0aAvKGEALw_wcB) 
+
+- Install Firebase CLI:
+```
+npm install -g firebase-tools
+```
+- Sign in to Gppgle:
+```
+firebase login
+```
+- Initialize project:
+```
+firebase init
+```
+- * Follow thos instructions to initialize & complete setup:
+```
+Select Hosting, use your existing project, * use build as public directory, y for singleview app, n for index.htmloverride
+```
+- Build after every changes:
+```
+npm run build
+```
+- Deploy to firebase:
+```
+firebase deploy
+```
+
