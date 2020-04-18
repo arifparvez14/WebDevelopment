@@ -1,6 +1,7 @@
 
 # Node & MongoDB Config #
 Create a simple server using Node & MongoDB
+Doc MongoDB:https://docs.mongodb.com/
 
 - Initialize node:
 ```
@@ -33,6 +34,16 @@ npm isntall mongodb --save
 - Install dotenv node:
 ```
 npm isntall dotenv
+```
+
+# Add Stripe #
+Way to add stripe on react project 
+Doc link 01: https://stripe.com/docs/stripe-js/react
+Doc link 02: https://github.com/stripe/react-stripe-js
+
+- Initialize stripe js:
+```
+npm install --save @stripe/react-stripe-js @stripe/stripe-js
 ```
 
 
