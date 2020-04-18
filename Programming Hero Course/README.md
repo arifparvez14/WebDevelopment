@@ -42,7 +42,7 @@ Way to add stripe on react project. Stripe official doc: https://stripe.com/docs
 ```
 npm install --save @stripe/react-stripe-js @stripe/stripe-js
 ```
-# Deploy DB to Heroku server#
+# Deploy DB to Heroku server #
 Getting start with heroku with nodejs. Install heroku cli on you local mechine. Follow the doc: https://devcenter.heroku.com/articles/getting-started-with-nodejs
 
 - Make sure your have heroku, node, npm & git already installed:
