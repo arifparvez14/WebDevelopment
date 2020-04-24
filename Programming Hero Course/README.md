@@ -116,10 +116,6 @@ npm run build
 ```
 npm install netlify-cli -g
 ```
-- Drag and drop build folder to deploy in netlify or:
-```
-npm install netlify-cli -g
-```
 - Show your build directory as:
 ```
 ./build
