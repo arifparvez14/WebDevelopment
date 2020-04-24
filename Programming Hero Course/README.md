@@ -105,4 +105,23 @@ npm run build
 ```
 firebase deploy
 ```
+# Deploy react app using netlify #
+Follow thos steps to deploy to your project using netlify. Check this out: https://www.netlify.com/blog/2016/07/22/deploy-react-apps-in-less-than-30-seconds/
+
+- Create a build folder:
+```
+npm run build
+```
+- Drag and drop build folder to deploy in netlify or:
+```
+npm install netlify-cli -g
+```
+- Drag and drop build folder to deploy in netlify or:
+```
+npm install netlify-cli -g
+```
+- Show your build directory as:
+```
+./build
+```
 
